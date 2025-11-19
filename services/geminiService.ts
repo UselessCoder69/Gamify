@@ -29,10 +29,8 @@ const handleApiError = (error: unknown): ApiServiceError => {
 
 
 export const generateMarketAnalysis = async (genre: string): Promise<MarketAnalysis> => {
-    // FIX: Use process.env.API_KEY directly as per Gemini API guidelines.
-    if (!process.env.API_KEY) throw new ApiServiceError(ApiErrorType.INVALID_KEY, 'API Key is not configured.');
     try {
-        const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+        const ai = new GoogleGenAI({ apiKey: process.env.API_KEY! });
         const response = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
             contents: `Analyze the current market for the game genre: "${genre}". Provide a list of 3-4 key market trends, 3-4 popular gameplay mechanics, and 3-4 common successful monetization patterns.`,
@@ -84,10 +82,8 @@ export const generateMarketAnalysis = async (genre: string): Promise<MarketAnaly
 };
 
 export const generateGameLevels = async (genre: string, analysis: MarketAnalysis): Promise<GameLevel[]> => {
-    // FIX: Use process.env.API_KEY directly as per Gemini API guidelines.
-    if (!process.env.API_KEY) throw new ApiServiceError(ApiErrorType.INVALID_KEY, 'API Key is not configured.');
     try {
-        const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+        const ai = new GoogleGenAI({ apiKey: process.env.API_KEY! });
         const response = await ai.models.generateContent({
             model: 'gemini-3-pro-preview',
             contents: `Based on the genre "${genre}" and the provided market analysis, generate two different, fully playable, and solvable game levels.
@@ -175,10 +171,8 @@ export const generateGameLevels = async (genre: string, analysis: MarketAnalysis
 };
 
 export const generatePrototype = async (level: GameLevel): Promise<PrototypeResult> => {
-    // FIX: Use process.env.API_KEY directly as per Gemini API guidelines.
-    if (!process.env.API_KEY) throw new ApiServiceError(ApiErrorType.INVALID_KEY, 'API Key is not configured.');
     try {
-        const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+        const ai = new GoogleGenAI({ apiKey: process.env.API_KEY! });
         const response = await ai.models.generateContent({
             model: 'gemini-3-pro-preview',
             contents: `

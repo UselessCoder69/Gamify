@@ -197,7 +197,7 @@ const App: React.FC = () => {
                             value={genre}
                             onChange={(e) => setGenre(e.target.value)}
                             placeholder="Enter Genre (e.g., 'Cozy Farming Sim')"
-                            className="flex-grow bg-[#AEA3D9]/40 border border-[#A691F2] rounded-xl px-4 py-3 text-[#3805F2] placeholder:text-[#3805F2]/60 focus:ring-2 focus:ring-[#3805F2] focus:outline-none transition-shadow"
+                            className="flex-grow bg-[#AEA3D9]/40 border border-[#A691F2] rounded-xl px-4 py-3 text-[#3805F2] placeholder:text-[#3805F2]/60 focus:ring-2 focus:ring-[#3805F2] focus:outline-none transition"
                             disabled={appState > AppState.ANALYSIS_INPUT}
                         />
                         <Button onClick={handleAnalyzeGenre} disabled={appState > AppState.ANALYSIS_INPUT} isLoading={appState === AppState.ANALYSIS_LOADING}>
@@ -219,18 +219,18 @@ const App: React.FC = () => {
                     )}
                     
                     {marketAnalysis && (
-                        <div className={`transition-[opacity,transform] duration-500 ease-in-out ${appState >= AppState.IDEA_COMPLETE ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                        <div className={`transition-opacity duration-500 ${appState >= AppState.IDEA_COMPLETE ? 'opacity-100' : 'opacity-0'}`}>
                             <h3 className="text-2xl font-bold text-center mb-6">Analysis for "{genre}"</h3>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                                <Card title="Market Trends" items={marketAnalysis.trends} extraClasses="transition-all" style={{ transitionDelay: '150ms' }}/>
-                                <Card title="Popular Mechanics" items={marketAnalysis.mechanics} extraClasses="transition-all" style={{ transitionDelay: '300ms' }}/>
-                                <Card title="Monetization Patterns" items={marketAnalysis.monetization} extraClasses="transition-all" style={{ transitionDelay: '450ms' }}/>
+                                <Card title="Market Trends" items={marketAnalysis.trends} />
+                                <Card title="Popular Mechanics" items={marketAnalysis.mechanics} />
+                                <Card title="Monetization Patterns" items={marketAnalysis.monetization} />
                             </div>
                         </div>
                     )}
 
                     {gameIdeas && (
-                         <div className={`transition-[opacity,transform] duration-500 ease-in-out delay-200 ${appState >= AppState.IDEA_COMPLETE ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                         <div className={`transition-opacity duration-500 ${appState >= AppState.IDEA_COMPLETE ? 'opacity-100' : 'opacity-0'}`}>
                             <h2 className="text-3xl font-bold text-center mb-6">AI-Generated Game Ideas</h2>
                              {error && appState === AppState.IDEA_COMPLETE && (
                                 <div className="max-w-3xl mx-auto mb-4">
@@ -286,19 +286,20 @@ const App: React.FC = () => {
                                                 sandbox="allow-scripts"
                                             />
                                         </div>
-                                        <div className="text-center text-[#3805F2]/80 mt-4 text-sm md:text-base">
-                                            <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-x-6 gap-y-3" aria-label="Game controls">
-                                                <div className="flex items-center gap-2">
-                                                    <span className="font-semibold">Move:</span>
-                                                    <kbd className={`font-sans bg-[#A691F2] text-[#3805F2] rounded-md px-2 py-1 transition-[transform,background-color,color] duration-150 ease-in-out ${activeKeys.has('ArrowLeft') ? '!bg-[#3805F2] !text-[#EAF2CE] scale-110' : ''}`}>←</kbd>
-                                                    <kbd className={`font-sans bg-[#A691F2] text-[#3805F2] rounded-md px-2 py-1 transition-[transform,background-color,color] duration-150 ease-in-out ${activeKeys.has('ArrowRight') ? '!bg-[#3805F2] !text-[#EAF2CE] scale-110' : ''}`}>→</kbd>
-                                                </div>
-                                                <div className="flex items-center gap-2">
-                                                    <span className="font-semibold">Jump:</span>
-                                                    <kbd className={`font-sans bg-[#A691F2] text-[#3805F2] rounded-md px-2 py-1 transition-[transform,background-color,color] duration-150 ease-in-out ${activeKeys.has('Space') ? '!bg-[#3805F2] !text-[#EAF2CE] scale-110' : ''}`}>Space</kbd>
-                                                    <span className="mx-1 text-xs opacity-75">/</span>
-                                                    <kbd className={`font-sans bg-[#A691F2] text-[#3805F2] rounded-md px-2 py-1 transition-[transform,background-color,color] duration-150 ease-in-out ${activeKeys.has('ArrowUp') ? '!bg-[#3805F2] !text-[#EAF2CE] scale-110' : ''}`}>↑</kbd>
-                                                </div>
+                                        <div className="text-center text-[#3805F2]/80 mt-4 text-xs sm:text-sm">
+                                            <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2">
+                                                <span className="font-semibold">Controls:</span>
+                                                <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
+                                                    <kbd className={`font-sans bg-[#A691F2] text-[#3805F2] rounded-md px-2 py-1 transition-all duration-100 ${activeKeys.has('ArrowLeft') ? '!bg-[#3805F2] !text-[#EAF2CE] scale-110' : ''}`}>←</kbd>
+                                                    <kbd className={`font-sans bg-[#A691F2] text-[#3805F2] rounded-md px-2 py-1 transition-all duration-100 ${activeKeys.has('ArrowRight') ? '!bg-[#3805F2] !text-[#EAF2CE] scale-110' : ''}`}>→</kbd>
+                                                    <span>to Move</span>
+                                                </span>
+                                                <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
+                                                    <kbd className={`font-sans bg-[#A691F2] text-[#3805F2] rounded-md px-2 py-1 transition-all duration-100 ${activeKeys.has('Space') ? '!bg-[#3805F2] !text-[#EAF2CE] scale-110' : ''}`}>Space</kbd>
+                                                    <span>or</span>
+                                                    <kbd className={`font-sans bg-[#A691F2] text-[#3805F2] rounded-md px-2 py-1 transition-all duration-100 ${activeKeys.has('ArrowUp') ? '!bg-[#3805F2] !text-[#EAF2CE] scale-110' : ''}`}>↑</kbd>
+                                                    <span>to Jump</span>
+                                                </span>
                                             </div>
                                         </div>
                                     </>

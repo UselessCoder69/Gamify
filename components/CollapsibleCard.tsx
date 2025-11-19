@@ -27,12 +27,12 @@ const CollapsibleCard: React.FC<CollapsibleCardProps> = ({ title, children, defa
         <div className="bg-[#AEA3D9] border border-[#A691F2] rounded-2xl overflow-hidden">
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="w-full flex justify-between items-center p-5 text-left font-semibold text-lg text-[#3805F2] hover:bg-[#A691F2]/60 focus:outline-none focus:bg-[#A691F2]/60 transition-colors duration-200"
+                className="w-full flex justify-between items-center p-5 text-left font-semibold text-lg text-[#3805F2] hover:bg-[#A691F2]/60 focus:outline-none focus:bg-[#A691F2]/60 transition"
             >
                 <span className="truncate pr-4">{title}</span>
                 <ChevronIcon isOpen={isOpen} />
             </button>
-            <div className={`transition-[max-height] duration-300 ease-in-out ${isOpen ? 'max-h-[2000px]' : 'max-h-0'}`}>
+            <div className={`transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[2000px]' : 'max-h-0'}`}>
                 {children}
             </div>
         </div>

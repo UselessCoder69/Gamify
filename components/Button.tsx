@@ -16,11 +16,10 @@ const Button: React.FC<ButtonProps> = ({ children, isLoading = false, size = 'md
             className={`
                 relative inline-flex items-center justify-center font-semibold rounded-xl shadow-md 
                 bg-[#3805F2] text-[#EAF2CE] 
-                hover:bg-[#7D5CF2] hover:scale-[1.03]
-                active:scale-[0.98]
-                disabled:bg-[#AEA3D9] disabled:text-[#3805F2]/50 disabled:cursor-not-allowed disabled:scale-100
+                hover:bg-[#7D5CF2] 
+                disabled:bg-[#AEA3D9] disabled:text-[#3805F2]/50 disabled:cursor-not-allowed
                 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#EAF2CE] focus:ring-[#7D5CF2]
-                transition-[background-color,transform,box-shadow] duration-200 ease-in-out
+                transition-all duration-300 ease-in-out
                 ${sizeClasses}
                 ${props.className || ''}
             `}
