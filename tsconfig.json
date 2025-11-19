@@ -5,30 +5,22 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
-
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
   "include": [
-    "App.tsx",
-    "index.tsx",
-    "types.ts",
-    "components",
-    "services",
-    "globals.d.ts",
-    "vite.config.ts"
+    "**/*.ts",
+    "**/*.tsx"
   ],
   "exclude": [
-    "**/*.d.ts",
     "node_modules",
     "dist",
     ".vercel"
