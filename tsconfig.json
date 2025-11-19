@@ -18,9 +18,11 @@
   },
   "include": [
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "vite.config.ts"
   ],
   "exclude": [
+    "**/*.d.ts",
     "node_modules",
     "dist",
     ".vercel"
