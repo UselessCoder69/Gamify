@@ -25,7 +25,8 @@
     "index.tsx",
     "types.ts",
     "components",
-    "services"
+    "services",
+    "globals.d.ts"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
